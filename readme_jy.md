@@ -1,5 +1,6 @@
  https://www.youtube.com/watch?v=_ycD0d7skdQ
  
+ // ***** START ***** //
  npx create-react-app .
 
  /src
@@ -13,10 +14,9 @@
  remove sth
 
  npm start
-
  npm install react-router-dom firebase
-
  npm install -g firebase-tools
+ npm install
 
 https://firebase.google.com/
 create project
@@ -26,7 +26,12 @@ build authentication
 
 if npm error code EACCES -> sudo npm ...
 
-// Deploy without github
+// ***** Run localhost ***** //
+(if change dev environment) npm install
+npm start
+ctrl + C to Stop
+
+// ***** Deploy without github ***** //
 firebase login
 npm run build
 firebase init

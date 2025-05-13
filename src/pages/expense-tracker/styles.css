@@ -1,4 +1,5 @@
 .expense-tracker {
+    padding: 2% 10%;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -12,6 +13,11 @@
   }
   .expense-tracker button {
     margin-left: 10px;
+  }
+  .add-transaction {
+    display: flex;
+    gap: 5px;
+    align-items: center;
   }
   .profile {
     display: flex;
@@ -45,13 +51,25 @@
     text-decoration: none;
     cursor: pointer;
   }
-  
+  .transactions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .transactions {
-    margin-left: 430px;
     margin-top: 20px;
     padding-left: 10px;
-    width: 600px;
+    width: 50%;
     height: 400px;
     overflow: auto;
     border: 3px solid #023047;
+  }
+  .transaction-item-title {
+    display: flex;
+    align-items: center;
+  }
+  .btn-close-fit {
+    margin-bottom: 0.3rem;
+    padding: 1px;
+    margin-left: 0.5rem;
   }
