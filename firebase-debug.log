@@ -1,0 +1,21 @@
+[debug] [2025-05-08T09:44:01.531Z] ----------------------------------------------------------------------
+[debug] [2025-05-08T09:44:01.532Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2025-05-08T09:44:01.533Z] CLI Version:   14.3.0
+[debug] [2025-05-08T09:44:01.533Z] Platform:      darwin
+[debug] [2025-05-08T09:44:01.533Z] Node Version:  v22.14.0
+[debug] [2025-05-08T09:44:01.533Z] Time:          Thu May 08 2025 17:44:01 GMT+0800 (Taipei Standard Time)
+[debug] [2025-05-08T09:44:01.533Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-08T09:44:01.536Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-08T09:44:01.536Z] > authorizing via signed-in user (shaurair@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/amy/ZJYPS/LearnReact/expense-tracker
+
