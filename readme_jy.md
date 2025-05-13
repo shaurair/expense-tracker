@@ -16,6 +16,8 @@
 
  npm install react-router-dom firebase
 
+ npm install -g firebase-tools
+
 https://firebase.google.com/
 create project
 build authentication
@@ -24,17 +26,22 @@ build authentication
 
 if npm error code EACCES -> sudo npm ...
 
-// Deploy
+// Deploy without github
 firebase login
 npm run build
 firebase init
 
 Hosting:configure files...
 use an existing project -> select {project}
-public
+public? build
 single-page app? N
-auto deploy with github? Y
+auto deploy with github? N
 index.html exist overwrite? N
 
-login github
-paste repo
+setup workflow before deploy? N
+automatic deploy? N
+
+after that, while code changing
+
+npm run build
+firebase deploy
