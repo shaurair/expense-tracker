@@ -3,13 +3,16 @@ import {useNavigate} from "react-router-dom"
 import {signOut} from "firebase/auth"
 import {useAddTransaction} from "../../hooks/useAddTransaction"
 import {useGetTransactions} from "../../hooks/useGetTransactions"
+import {useDeleteTransaction} from "../../hooks/useDeleteTransaction"
 import {useGetUserInfo} from "../../hooks/useGetUserInfo"
+import 'bootstrap/dist/css/bootstrap.css'
 import "./styles.css"
 import { auth } from "../../config/firebase-config";
 
 export const ExpenseTracker = () => {
     const {addTransaction} = useAddTransaction();
     const {transactions, transactionTotals} = useGetTransactions();
+    const {deleteTransaction} = useDeleteTransaction();
     const {balance, expenses, income} = transactionTotals;
     const {name, profilePhoto} = useGetUserInfo();
 
@@ -97,20 +100,28 @@ export const ExpenseTracker = () => {
                     )
                 }
             </div>
-            <div className="transactions">
-                <h3>Transactions</h3>
-                <ul>
-                    {transactions.map((transaction) => {
-                        const {description, transactionAmount, transactionType} =  transaction;
+            <div className="transactions-container">
+                <div className="transactions">
+                    <h3>Transactions</h3>
+                    <ul>
+                        {transactions.map((transaction) => {
+                            const {description, transactionAmount, transactionType, id} =  transaction;
 
-                        return (
-                            <li>
-                                <h4>{description}</h4>
-                                <p>${transactionAmount}  <label style={{color: transactionType === "expense" ? "red" : "green"}}>{transactionType}</label></p>
-                            </li>
-                        )
-                    })}
-                </ul>
+                            return (
+                                <li>
+                                    <div className="transaction-item-title">
+                                        <h4>{description}</h4>
+                                        <button type="button" className="btn-close btn-close-fit" data-bs-dismiss="alert" 
+                                                aria-label="Close" onClick={()=>{deleteTransaction(id)}}
+                                        >
+                                        </button>
+                                    </div>
+                                    <p>${transactionAmount}  <label style={{color: transactionType === "expense" ? "red" : "green"}}>{transactionType}</label></p>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
         </>
     );
