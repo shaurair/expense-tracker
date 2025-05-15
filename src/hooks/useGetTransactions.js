@@ -55,6 +55,7 @@ export const useGetTransactions = () => {
         return () => unsubscribe()
     }
 
+    // empty array: function run only once when the component mountes
     // when component unmounts, React run the function returned by useEffect
     useEffect(() => {
         getTransactions()

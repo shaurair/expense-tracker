@@ -3,8 +3,10 @@ import {useNavigate} from "react-router-dom"
 import {signOut} from "firebase/auth"
 import {useAddTransaction} from "../../hooks/useAddTransaction"
 import {useGetTransactions} from "../../hooks/useGetTransactions"
+import {useUpdateTransaction} from "../../hooks/useUpdateTransaction"
 import {useDeleteTransaction} from "../../hooks/useDeleteTransaction"
 import {useGetUserInfo} from "../../hooks/useGetUserInfo"
+import {EditTransactionForm} from "../../components/EditTransactionForm"
 import 'bootstrap/dist/css/bootstrap.css'
 import "./styles.css"
 import { auth } from "../../config/firebase-config";
@@ -12,6 +14,7 @@ import { auth } from "../../config/firebase-config";
 export const ExpenseTracker = () => {
     const {addTransaction} = useAddTransaction();
     const {transactions, transactionTotals} = useGetTransactions();
+    const {updateTransaction} = useUpdateTransaction();
     const {deleteTransaction} = useDeleteTransaction();
     const {balance, expenses, income} = transactionTotals;
     const {name, profilePhoto} = useGetUserInfo();
@@ -21,6 +24,8 @@ export const ExpenseTracker = () => {
     const [description, setDescription] = useState("");
     const [transactionAmount, setTranctionAmount] = useState("");
     const [transactionType, setTransactionType] = useState("expense");
+
+    const [editingId, setEditingId] = useState(null);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -80,17 +85,16 @@ export const ExpenseTracker = () => {
                             checked = {transactionType === "expense"}
                             onChange={(e) => {setTransactionType(e.target.value)}}
                         />
-                        <label htmlFor="expense">Expense</label>
+                        <label htmlFor="expense" style={{color:"red"}}>Expense</label>
                         <input type="radio" id="income" value="income" 
                             checked = {transactionType === "income"}
                             onChange={(e) => {setTransactionType(e.target.value)}}
                         />
-                        <label htmlFor="income">Income</label>
+                        <label htmlFor="income" style={{color:"green"}}>Income</label>
 
-                        <button type="submit">Add Transaction</button>
+                        <button type="submit" className="btn btn-outline-primary">Add</button>
                     </form>
                 </div>
-
                 {
                     profilePhoto && (
                     <div className="profile">
@@ -108,15 +112,32 @@ export const ExpenseTracker = () => {
                             const {description, transactionAmount, transactionType, id} =  transaction;
 
                             return (
-                                <li>
-                                    <div className="transaction-item-title">
-                                        <h4>{description}</h4>
-                                        <button type="button" className="btn-close btn-close-fit" data-bs-dismiss="alert" 
-                                                aria-label="Close" onClick={()=>{deleteTransaction(id)}}
-                                        >
-                                        </button>
-                                    </div>
-                                    <p>${transactionAmount}  <label style={{color: transactionType === "expense" ? "red" : "green"}}>{transactionType}</label></p>
+                                <li key={id}>
+                                    {
+                                    (editingId === id)
+                                    ? (<>
+                                        <EditTransactionForm 
+                                            initialDescription={description}
+                                            initialAmount={transactionAmount}
+                                            initialType={transactionType}
+                                            onCancel={
+                                                ()=>{setEditingId(null)
+                                            }}
+                                            onSave={(updatedTransaction) => {
+                                                updateTransaction(id, updatedTransaction);
+                                                setEditingId(null);
+                                            }}
+                                        />
+                                        </>)
+                                    : (<>
+                                        <div className="transaction-item-title">
+                                            <h4>{description}</h4>
+                                            <button type="button" className="btn btn-outline-secondary btn-edit-fit" onClick={()=>setEditingId(id)}>Edit</button>
+                                            <button type="button" className="btn btn-outline-secondary btn-edit-fit" onClick={()=>{deleteTransaction(id)}}>Delete</button>
+                                        </div>
+                                        <p>${transactionAmount}  <label style={{color: transactionType === "expense" ? "red" : "green"}}>{transactionType}</label></p>
+                                        </>)
+                                    }
                                 </li>
                             )
                         })}
