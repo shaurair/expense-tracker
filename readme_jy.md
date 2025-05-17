@@ -32,7 +32,7 @@ npm start
 ctrl + C to Stop
 
 // **\*** Deploy without github **\*** //
-firebase login (beforehand -> npm install -g firebase-tools)
+(first time) firebase login (beforehand -> npm install -g firebase-tools)
 npm run build
 (verify build result: npx serve -s build)
 (first time) firebase init
