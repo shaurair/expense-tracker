@@ -132,8 +132,16 @@ export const ExpenseTracker = () => {
                                     : (<>
                                         <div className="transaction-item-title">
                                             <h4>{description}</h4>
-                                            <button type="button" className="btn btn-outline-secondary btn-edit-fit" onClick={()=>setEditingId(id)}>Edit</button>
-                                            <button type="button" className="btn btn-outline-secondary btn-edit-fit" onClick={()=>{deleteTransaction(id)}}>Delete</button>
+                                            <button type="button" className="btn btn-outline-secondary btn-edit-fit" 
+                                                onClick={()=>setEditingId(id)}
+                                            >Edit</button>
+                                            <button type="button" className="btn btn-outline-secondary btn-edit-fit" 
+                                                onClick={()=>{
+                                                    if(window.confirm("Are you sure to delete?")) {
+                                                        deleteTransaction(id);
+                                                    }
+                                                }}
+                                            >Delete</button>
                                         </div>
                                         <p>${transactionAmount}  <label style={{color: transactionType === "expense" ? "red" : "green"}}>{transactionType}</label></p>
                                         </>)
