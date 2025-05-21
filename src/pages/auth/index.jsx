@@ -21,17 +21,29 @@ export const Auth = () => {
         navigate("/expense-tracker");
     };
 
+    const signInWithTestAccount = () => {
+        const authInfo = {
+            userID: "testID",
+            name: "Test Name",
+            profilePhoto: "/user.png",
+            isAuth: true
+        };
+        localStorage.setItem("auth", JSON.stringify(authInfo));
+        navigate("/expense-tracker");
+    }
+
     if(isAuth) {
         return <Navigate to="expense-tracker" />;
     }
 
     return (
         <div className="login-page">
-            <p>Sign In With Google to Continue</p>
-            <button className="login-with-google-btn" onClick={signInWithGoogle}>
+            <p className="mg-btm-lg-rem">Sign In to Continue</p>
+            <button className="login-with-google-btn btn-effect mg-btm-sm-rem" onClick={signInWithGoogle}>
                 {""}
                 Sign In With Google
             </button>
+            <button className="login-with-test-account-btn btn-effect" onClick={signInWithTestAccount}>Sign In With TestAccount</button>
         </div>
     );
 }

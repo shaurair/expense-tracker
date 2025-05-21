@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom"
 import {signOut} from "firebase/auth"
 import {useAddTransaction} from "../../hooks/useAddTransaction"
@@ -17,7 +17,7 @@ export const ExpenseTracker = () => {
     const {updateTransaction} = useUpdateTransaction();
     const {deleteTransaction} = useDeleteTransaction();
     const {balance, expenses, income} = transactionTotals;
-    const {name, profilePhoto} = useGetUserInfo();
+    const {userID, name, profilePhoto} = useGetUserInfo();
 
     const navigate = useNavigate();
 
@@ -41,13 +41,21 @@ export const ExpenseTracker = () => {
 
     const signUserOut = async() => {
         try {
-            await signOut(auth);
+            if(userID !== "userID") {
+                await signOut(auth);
+            }
             localStorage.clear();
             navigate("/");
         } catch (error) {
             console.error(error);
         }
     }
+
+    useEffect(() => {
+        if (!localStorage.getItem("auth")) {
+          navigate("/");
+        }
+      }, [navigate]); 
 
     return (
         <>
