@@ -1,5 +1,5 @@
 .expense-tracker {
-    padding: 2% 10%;
+    padding: 2% 15%;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -7,29 +7,33 @@
     align-items: center;
     color: #023047;
   }
-  
   .expense-tracker h1 {
     font-size: 40px;
   }
-  .expense-tracker button {
-    margin-left: 10px;
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
   .add-transaction {
     display: flex;
-    gap: 5px;
+    gap: 0.6rem;
     align-items: center;
+  }
+  .option-btn-container {
+    display: flex;
+    gap: 0.6rem;
   }
   .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 200px;
+    margin-left: 50px;
   }
   .profile-photo {
     width: 200px;
     border-radius: 50%;
   }
-  
   .sign-out-button {
     border: none;
     margin-top: 50px;
@@ -43,10 +47,8 @@
     padding: 10px 20px 10px 20px;
     text-decoration: none;
   }
-  
   .sign-out-button:hover {
     background: #3cb0fd;
-  
     background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
     text-decoration: none;
     cursor: pointer;
@@ -58,8 +60,8 @@
   }
   .transactions {
     margin-top: 20px;
-    padding-left: 10px;
-    width: 50%;
+    padding: .75% 1%;
+    width: 60%;
     height: 400px;
     overflow: auto;
     border: 3px solid #023047;
@@ -78,6 +80,83 @@
     padding: 1px;
     margin-left: 0.5rem;
   }
+  .mg-btm-mdrem {
+    margin-bottom: 1rem;
+  }
   .mg-btm-0p5rem {
     margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .expense-tracker {
+      padding: 2% 5%;
+    }
+    .expense-tracker h1 {
+      font-size: 36px;
+    }
+    .add-transaction{
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .option-btn-container {
+      width: 100%;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .profile-photo {
+      width: 10rem;
+    }
+    .sign-out-button {
+      margin-top: 20px;
+      padding: 8px;
+      font-size: 18px;
+    }
+    .transactions {
+      width: 70%;
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .expense-tracker h1 {
+      font-size: 32px;
+    }
+    .profile {
+      margin-left: 0;
+      margin-top: 30px;
+    }
+    .profile-photo {
+      width: 10rem;
+    }
+    .sign-out-button {
+      margin-top: 20px;
+      padding: 5px;
+      font-size: 18px;
+    }
+    .option-btn-container{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .expense-tracker h1 {
+      font-size: 28px;
+    }
+    .profile {
+      margin-top: 0;
+    }
+    .profile-photo {
+      width: 8rem;
+    }
+    .sign-out-button {
+      padding: 3px;
+      font-size: 16px;
+      width: 100px;
+    }
+  }
+
+  @media (max-width: 320px) {
+
   }

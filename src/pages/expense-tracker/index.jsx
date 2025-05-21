@@ -59,62 +59,71 @@ export const ExpenseTracker = () => {
 
     return (
         <>
-            <div className="expense-tracker">
-                <div className="container">
-                    <h1>{name}'s Expense Tracker</h1>
-                    <div className="balance">
-                        <h3>Your Balance</h3>
-                        {
-                            balance >= 0 
-                            ? (<h2>${balance}</h2>)
-                            : (<h2>-${balance * -1}</h2>)
-                        }
-                    </div>
-                    <div className="summary">
-                        <div className="income">
-                            <h4>Income</h4>
-                            <p>${income}</p>
+            <div className="summary-profile-container">
+                <div className="expense-tracker">
+                    <div className="summary-container">
+                        <h1>{name}'s Expense Tracker</h1>
+                        <div className="balance">
+                            <h3>Your Balance</h3>
+                            {
+                                balance >= 0 
+                                ? (<h2>${balance}</h2>)
+                                : (<h2>-${balance * -1}</h2>)
+                            }
                         </div>
-                        <div className="expenses">
-                            <h4>Expenses</h4>
-                            <p>${expenses}</p>
+                        <div className="summary">
+                            <div className="income">
+                                <h4>Income</h4>
+                                <p>${income}</p>
+                            </div>
+                            <div className="expenses">
+                                <h4>Expenses</h4>
+                                <p>${expenses}</p>
+                            </div>
                         </div>
+                        <form className="add-transaction" onSubmit={onSubmit}>
+                            <div className="option-btn-container">
+                                <input type="text" placeholder="Description" required 
+                                    value={description}
+                                    onChange={(e) => {setDescription(e.target.value)}}
+                                />
+                                <input type="number" placeholder="Amount" required 
+                                    value={transactionAmount}
+                                    onChange={(e) => {setTranctionAmount(e.target.value)}}
+                                />
+                            </div>
+                            <div className="option-btn-container">
+                                <div className="radio-option">
+                                    <input type="radio" id="expense" value="expense"
+                                        checked = {transactionType === "expense"}
+                                        onChange={(e) => {setTransactionType(e.target.value)}}
+                                    />
+                                    <label htmlFor="expense" style={{color:"red"}}>Expense</label>
+                                </div>
+                                <div className="radio-option">
+                                    <input type="radio" id="income" value="income" 
+                                        checked = {transactionType === "income"}
+                                        onChange={(e) => {setTransactionType(e.target.value)}}
+                                    />
+                                    <label htmlFor="income" style={{color:"green"}}>Income</label>
+                                </div>
+                                <button type="submit" className="btn btn-outline-primary">Add</button>
+                            </div>
+                        </form>
                     </div>
-                    <form className="add-transaction" onSubmit={onSubmit}>
-                        <input type="text" placeholder="Description" required 
-                            value={description}
-                            onChange={(e) => {setDescription(e.target.value)}}
-                        />
-                        <input type="number" placeholder="Amount" required 
-                            value={transactionAmount}
-                            onChange={(e) => {setTranctionAmount(e.target.value)}}
-                        />
-                        <input type="radio" id="expense" value="expense"
-                            checked = {transactionType === "expense"}
-                            onChange={(e) => {setTransactionType(e.target.value)}}
-                        />
-                        <label htmlFor="expense" style={{color:"red"}}>Expense</label>
-                        <input type="radio" id="income" value="income" 
-                            checked = {transactionType === "income"}
-                            onChange={(e) => {setTransactionType(e.target.value)}}
-                        />
-                        <label htmlFor="income" style={{color:"green"}}>Income</label>
-
-                        <button type="submit" className="btn btn-outline-primary">Add</button>
-                    </form>
+                    {
+                        profilePhoto && (
+                        <div className="profile">
+                            <img className="profile-photo" src={profilePhoto}/>
+                            <button className="sign-out-button" onClick={signUserOut}>Sign Out</button>
+                        </div>
+                        )
+                    }
                 </div>
-                {
-                    profilePhoto && (
-                    <div className="profile">
-                        <img className="profile-photo" src={profilePhoto}/>
-                        <button className="sign-out-button" onClick={signUserOut}>Sign Out</button>
-                    </div>
-                    )
-                }
             </div>
             <div className="transactions-container">
                 <div className="transactions">
-                    <h3>Transactions</h3>
+                    <h2 className="mg-btm-mdrem">Transactions</h2>
                     <ul>
                         {transactions.map((transaction) => {
                             const {description, transactionAmount, transactionType, id} =  transaction;

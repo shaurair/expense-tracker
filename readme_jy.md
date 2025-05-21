@@ -43,7 +43,7 @@ use an existing project -> select {project}
 public directory? build
 single-page app? N
 auto deploy with github? N
-index.html exist overwrite? N
+index.html exist overwrite? Yes
 
 setup workflow before deploy? N
 automatic deploy? N
