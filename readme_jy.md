@@ -31,24 +31,27 @@ if npm error code EACCES -> sudo npm ...
 npm start
 ctrl + C to Stop
 
-// **\*** Deploy without github **\*** //
-(first time) firebase login (beforehand -> npm install -g firebase-tools)
+//*********************************//
+//    Deploy without github        //
+//*********************************//
+(first time)
+npm install -g firebase-tools
+firebase login 
+firebase init
+
+Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys
+✔ What do you want to use as your public directory? build
+✔ Configure as a single-page app (rewrite all urls to /index.html)? Yes
+✔ Set up automatic builds and deploys with GitHub? No
+✔ File build/index.html already exists. Overwrite? Yes
+
+
+Modify firebase.json
+
+
+//*********************************//
+// after that, while code changing //
+//*********************************//
 npm run build
 (verify build result: npx serve -s build)
-(first time) firebase init
-firebase deploy
-
-Hosting:configure files...
-use an existing project -> select {project}
-public directory? build
-single-page app? N
-auto deploy with github? N
-index.html exist overwrite? Yes
-
-setup workflow before deploy? N
-automatic deploy? N
-
-after that, while code changing
-
-npm run build
 firebase deploy
