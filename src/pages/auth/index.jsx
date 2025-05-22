@@ -24,7 +24,7 @@ export const Auth = () => {
     const signInWithTestAccount = () => {
         const authInfo = {
             userID: "testID",
-            name: "Test Name",
+            name: "Demo Account",
             profilePhoto: "/user.png",
             isAuth: true
         };
@@ -43,7 +43,7 @@ export const Auth = () => {
                 {""}
                 Sign In With Google
             </button>
-            <button className="login-with-test-account-btn btn-effect" onClick={signInWithTestAccount}>Sign In With TestAccount</button>
+            <button className="login-with-test-account-btn btn-effect" onClick={signInWithTestAccount}>Sign In With DemoAccount</button>
         </div>
     );
 }
